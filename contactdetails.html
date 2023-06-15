@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amuthasurabi</title>
+    <!-- <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css"> -->
+    <!-- <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css"> -->
+    <!-- <link rel="stylesheet" href="../../css/style.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            h3{
+                text-align: center;
+                /* color: #ffca00; */
+            }
+            /* .btn2{
+                background-color: #a62b34;
+            } */
+            .col{
+                margin-left: 130px;
+                width: 80%;
+            }
+            .btn{
+                background-color: #a62b34;
+                color: whitesmoke;
+            }
+            .fa{
+                margin-left: 1400px;
+            }
+
+            .bi{
+             margin-left: 35px;
+            margin-top: 40px; 
+            color: #100c0c;
+        } 
+
+        .bi1{
+            margin-top: 40px;
+            color: black;
+            margin-left: 10px;
+        }
+
+        </style>
+</head>
+<a href="../../products.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+  </svg></a>
+
+  <a href="../spica/index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi1 bi-person-fill" viewBox="0 0 16 16">
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+      </svg>
+  </a>
+<body style="background-color:#E3E7E8">
+    <!-- <a href="../spica/index.html">
+        <button type="submit"  class="btn2">Back</button>
+    </a> -->
+
+    <div class="col">
+        <div class="car">
+            <div class="card-body">
+                <h3 class="card-title"><b>Contact Details </b></h3>
+             
+                <div class="table-responsive pt-4">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Full Name
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                                <th>
+                                    Email Address
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Message
+                                </th>
+                                <th>
+                                   Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="div_body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- <button  class="fa fa-sign-out" style="font-size:24px;color:rgb(48, 45, 45)"> -->
+            <!-- <a href="../spica/index.html">Logout</a></button> -->
+    </div>
+
+
+
+    <script>
+
+        const promise = fetch("/contact")
+            .then(function (res) {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw new Error("Something Failed..");
+            })
+            .then(function (data) {
+                let divData = "";
+
+                data.forEach((values, index) => {
+                    divData += `
+                    <tr>
+                 <td>
+                    ${values.name}
+                 </td>
+                 <td>
+                    ${values.phone}
+                 </td>
+                 <td>
+                    ${values.emailAddress}
+                 </td>
+                 <td>
+                    ${values.date}
+                 </td>
+                 <td>
+                    ${values.message}
+                 </td>
+                 <td>
+                    <a href="/deleted/${values._id}">
+                                <span class="btn">Delete</span> </a>
+                 </td>
+               </tr>
+           
+                    `
+
+                    if ((index + 1) % 4 === 0) {
+                        // Add a new row after every third card
+                        divData += `<div class="row"></div>`;
+                    }
+                });
+
+                document.getElementById("div_body").innerHTML = divData;
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>

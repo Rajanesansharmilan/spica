@@ -19,7 +19,7 @@
 <body>
   <div class="container-scroller d-flex">
     <!-- partial:../../partials/_sidebar.html -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <!-- <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item sidebar-category">
           <p>Navigation</p>
@@ -35,7 +35,7 @@
         <li class="nav-item sidebar-category">
           <p>Components</p>
           <span></span>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-palette menu-icon"></i>
@@ -55,18 +55,18 @@
             <span class="menu-title">Form elements</span>
           </a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="../../pages/charts/chartjs.html">
             <i class="mdi mdi-chart-pie menu-icon"></i>
             <span class="menu-title">Charts</span>
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" href="../../pages/tables/basic-table.html">
             <i class="mdi mdi-grid-large menu-icon"></i>
             <span class="menu-title">Tables</span>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="../../pages/icons/mdi.html">
             <i class="mdi mdi-emoticon menu-icon"></i>
@@ -77,25 +77,25 @@
           <p>Pages</p>
           <span></span>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
             <i class="mdi mdi-account menu-icon"></i>
             <span class="menu-title">User Pages</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="auth">
-            <ul class="nav flex-column sub-menu">
+            <ul class="nav flex-column sub-menu"> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li> -->
-              <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login  </a></li>
+              <!-- <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login  </a></li> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li> -->
-              <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register-2.html"> Register  </a></li>
-              <li class="nav-item"> <a class="nav-link" href="../../pages/samples/lock-screen.html"> Lockscreen </a></li>
+              <!-- <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register-2.html"> Register  </a></li>
+              <li class="nav-item"> <a class="nav-link" href="../../pages/samples/lock-screen.html"> Lockscreen </a></li> -->
             </ul>
           </div>
         </li>
-        <li class="nav-item sidebar-category">
+        <!-- <li class="nav-item sidebar-category">
           <p>Apps</p>
-          <span></span>
+          <span></span> -->
         <!-- </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="../../docs/documentation.html">
@@ -114,7 +114,7 @@
     <div class="container-fluid page-body-wrapper">
       <!-- partial:../../partials/_navbar.html -->      
             
-      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+      <!-- <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
@@ -268,11 +268,11 @@
             </li>
           </ul>
         </div>
-      </nav>      
+      </nav>       -->
             
       <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
+      <!-- <div class="main-panel"> -->
+        <!-- <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
@@ -327,7 +327,171 @@
               </div>
             </div>
           </div>
+        </div> -->
+        <div class="row">
+          <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Line chart</h4>
+                <canvas id="lineChart"></canvas>
+              </div>
+            </div>
+          </div>
+         
         </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Bar chart</h4>
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          window.addEventListener('DOMContentLoaded', () => {
+            // Fetch order data
+            fetch('/order')
+              .then(response => response.json())
+              .then(data => {
+                const productLabels = data.map(order => order.product);
+                const totalData = data.map(order => order.total);
+        
+                // Line chart
+                const lineChartCanvas = document.getElementById('lineChart');
+                new Chart(lineChartCanvas, {
+                  type: 'line',
+                  data: {
+                    labels: productLabels,
+                    datasets: [{
+                      label: 'Total',
+                      data: totalData,
+                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      x: {
+                        title: {
+                          display: true,
+                          text: 'Product'
+                        }
+                      },
+                      y: {
+                        title: {
+                          display: true,
+                          text: 'Total'
+                        }
+                      }
+                    }
+                  }
+                });
+        
+                // Populate order details table
+                const orderTableBody = document.getElementById('orderTableBody');
+        
+                data.forEach((order, index) => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                    <td>${order.name}</td>
+                    <td>${order.email}</td>
+                    <td>${order.phone}</td>
+                    <td>${order.product}</td>
+                    <td>${order.total}</td>
+                    <td>${order.quantity}</td>
+                    <td>
+                      <a href="/deletedd/${order._id}">
+                        <span class="btn">Delete</span>
+                      </a>
+                    </td>
+                  `;
+                  // Add animation class to table rows
+                  row.classList.add('animate__animated', 'animate__fadeInUp', `animate__delay-${index + 1}s`);
+                  orderTableBody.appendChild(row);
+                });
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          });
+          
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // Fetch order data
+            fetch('/order')
+              .then(response => response.json())
+              .then(data => {
+                const productLabels = data.map(order => order.product);
+                const totalData = data.map(order => order.total);
+        
+                // Bar chart
+                const barChartCanvas = document.getElementById('barChart');
+                new Chart(barChartCanvas, {
+                  type: 'bar',
+                  data: {
+                    labels: productLabels,
+                    datasets: [{
+                      label: 'Total',
+                      data: totalData,
+                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      x: {
+                        title: {
+                          display: true,
+                          text: 'Product'
+                        }
+                      },
+                      y: {
+                        title: {
+                          display: true,
+                          text: 'Total'
+                        }
+                      }
+                    }
+                  }
+                });
+        
+                // Populate order details table
+                // const orderTableBody = document.getElementById('orderTableBody');
+        
+                data.forEach((order, index) => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                    <td>${order.name}</td>
+                    <td>${order.email}</td>
+                    <td>${order.phone}</td>
+                    <td>${order.product}</td>
+                    <td>${order.total}</td>
+                    <td>${order.quantity}</td>
+                    <td>
+                      <a href="/deletedd/${order._id}">
+                        <span class="btn">Delete</span>
+                      </a>
+                    </td>
+                  `;
+                  // Add animation class to table rows
+                  row.classList.add('animate__animated', 'animate__fadeInUp', `animate__delay-${index + 1}s`);
+                  orderTableBody.appendChild(row);
+                });
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          });
+        </script>
+        
+        
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -359,7 +523,7 @@
   <script src="../../vendors/chart.js/Chart.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
-  <script src="../../js/chart.js"></script>
+  <!-- <script src="../../js/chart.js"></script> -->
   <!-- End custom js for this page-->
 </body>
 

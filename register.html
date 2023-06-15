@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+        <style>
+            .card {
+                /* background-color: #f7f7f7; */
+                border-radius: 8px;
+                padding: 30px;
+                width: 62%;
+                margin-left: 300px;
+                border: #fff;
+            }
+        
+            .card-title {
+                color: #333;
+                font-size: 24px;
+                margin-left: 350px;
+                /* background-color: #7a776e;
+                width:200px; */
+            }
+        
+            .table {
+                width: 100%;
+            }
+        
+            .table-dark {
+                background-color: #343a40;
+                color: #fff;
+            }
+        
+            .table-dark th {
+                border: none;
+                font-weight: 500;
+            }
+        
+            .table-dark td {
+                border: none;
+            }
+        
+            .table-dark td,
+            .table-dark th {
+                padding: 10px;
+            }
+        
+            .table-responsive {
+                overflow-x: auto;
+            }
+        
+            .btn1 {
+                background-color:  #a62b34;
+                border: none;
+                color: #fefcfc;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 500;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+                margin-bottom: 12px;
+            }
+        
+            /* .btn1:hover {
+                background-color: #c58804;
+            } */
+        
+            .row {
+                margin-top: 20px;
+            }
+        
+            /* Animation */
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        
+            .card-title,
+            .table {
+                animation: fadeIn 1s ease;
+            }
+            .btn2{
+                margin-left: 1300px;
+            }
+            
+            .bi{
+             margin-left: 35px;
+            margin-top: 40px; 
+            color: #100c0c;
+        } 
+
+        .bi1{
+            margin-top: 40px;
+            color: black;
+            margin-left: 10px;
+        }
+
+        </style>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<a href="../../products.html"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+  </svg></a>
+
+  <a href="../spica/index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi1 bi-person-fill" viewBox="0 0 16 16">
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+      </svg>
+  </a>
+
+<body style="background-color: lightblue;">
+    <a href="../spica/index.html">
+        <!-- <button type="submit" class="btn2">Back</button> -->
+         <!-- <button  class="btn2 glyphicon glyphicon-home">Home</button> -->
+            <!-- <span class="glyphicon glyphicon-home"></span> Home -->
+          </a>
+    </a>
+    <div class="col-lg-12 grid-margin stretch-card pt-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><b>Register Details </b></h3>
+
+                <div class="table-responsive pt-4">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Password
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="div_body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const promise = fetch("/Register")
+            .then(function (res) {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw new Error("Something Failed..");
+            })
+            .then(function (data) {
+                let divData = "";
+
+                data.forEach((values, index) => {
+                    divData += `
+               <tr>
+                    <td>
+                        ${values.name}
+                    </td>
+                    <td>
+                        ${values.email}
+                    </td>
+                    <td>
+                        ${values.password}
+                    </td>
+                    <td>
+                        <a href="/deleting/${values._id}">
+                                <span class="btn1">Delete</span> </a>
+                    </td>
+                  </tr>
+                    `
+
+                    if ((index + 1) % 1 === 0) {
+                        // Add a new row after every third card
+                        divData += `<div class="row"></div>`;
+                    }
+                });
+
+                document.getElementById("div_body").innerHTML = divData;
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>

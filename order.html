@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-image: url('path/to/your/background-image.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .btn1 {
+            padding: 6px 10px;
+            background-color: #a62b34;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* .btn1:hover {
+            background-color: #df9c0d;
+        } */
+
+        /* Animation styles */
+        .animate__animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .animate__delay-1s {
+            animation-delay: 0.2s;
+        }
+
+        .animate__delay-2s {
+            animation-delay: 0.4s;
+        }
+
+        .animate__delay-3s {
+            animation-delay: 0.6s;
+        }
+
+        .animate__delay-4s {
+            animation-delay: 0.8s;
+        }
+
+        .animate__delay-5s {
+            animation-delay: 1.0s;
+        }
+
+        .animate__delay-6s {
+            animation-delay: 1.2s;
+        }
+
+        .animate__delay-7s {
+            animation-delay: 1.4s;
+        }
+
+        .animate__delay-8s {
+            animation-delay: 1.6s;
+        }
+
+        .animate__fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        h3{
+            text-align: center;
+        }
+
+        .bi{
+             margin-left: 35px;
+            margin-top: 40px; 
+            color: #100c0c;
+        } 
+
+        .bi1{
+            margin-top: 40px;
+            color: black;
+            margin-left: 10px;
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- <table id="orderTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Product</th>
+                <th>Total</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="orderTableBody"></tbody>
+    </table> -->
+
+    <a href="../../products.html"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+      </svg></a>
+
+      <a href="../spica/index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi1 bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg>
+      </a>
+
+
+    <div class="col">
+        <div class="car">
+            <div class="card-body">
+                <h3 class="card-title"><b>Order Details </b></h3>
+             
+                <div class="table-responsive pt-4">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Product</th>
+                                <th>Total</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="div_body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div>
+        <button  class="fa fa-sign-out" style="font-size:24px;color:rgb(48, 45, 45)">
+            <a href="../spica/index.html">Logout</a></button>
+    </div> -->
+
+
+
+    <!-- <script src="order.js"></script> -->
+    <!-- <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('/order')
+                .then(response => response.json())
+                    const orderTableBody = document.getElementById('orderTableBody');
+
+                    data.forEach((order, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+          <td>${order.name}</td>
+          <td>${order.email}</td>
+          <td>${order.phone}</td>
+          <td>${order.product}</td>
+          <td>${order.total}</td>
+          <td>${order.quantity}</td>
+          <td>${order.date}</td>
+          <td>
+            <a href="/deletedd/${order._id}">
+              <span class="btn">Delete</span>
+            </a>
+          </td>
+        `;
+                        // Add animation class to table rows
+                        row.classList.add('animate__animated', 'animate__fadeInUp', `animate__delay-${index + 1}s`);
+                        orderTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+    </script> -->
+    <script>
+        const promise = fetch("/order")
+            .then(function (res) {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw new Error("Something Failed..");
+            })
+            .then(function (data) {
+                let divData = "";
+
+                data.forEach((order, index) => {
+                    divData += `
+                    <tr>
+                        <td>${order.name}</td>
+          <td>${order.email}</td>
+          <td>${order.phone}</td>
+          <td>${order.product}</td>
+          <td>${order.total}</td>
+          <td>${order.quantity}</td>
+          <td>${order.date}</td>
+          <td>
+            <a href="/deletedd/${order._id}">
+              <span class="btn1">Delete</span>
+            </a>
+          </td>
+               </tr>
+           
+                    `
+
+                    if ((index + 1) % 4 === 0) {
+                        // Add a new row after every third card
+                        divData += `<div class="row"></div>`;
+                    }
+                     // Add animation class to table rows
+                    //  row.classList.add('animate__animated', 'animate__fadeInUp', `animate__delay-${index + 1}s`);
+                    //     orderTableBody.appendChild(row);
+                });
+
+                document.getElementById("div_body").innerHTML = divData;
+            })
+            .catch(function (error) {
+                console.error(error);
+            }); 
+    </script>
+</body>
+
+</html>+
